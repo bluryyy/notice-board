@@ -2,7 +2,10 @@
 const express = require('express')
 
 //import bodyParser
-const bodyParser = require('bodyParser')
+const bodyParser = require('body-parser')
+
+//import notice routes
+const routesNotice = require('./components/notice/noticeController')
 
 //turn on Express
 const app = express()
@@ -18,9 +21,7 @@ app.use(bodyParser.urlencoded({extented:false}))
 app.use(bodyParser.json())
 
 //routes
-app.get("/",(req,res)=>{
-    res.send("odeio aula online")
-})
+app.use(routesNotice)
 
 //select port
 app.listen(3000)
