@@ -16,6 +16,8 @@ app.set('view engine', 'ejs')
 //config Public
 app.use(express.static('public'))
 
+app.locals.moment = require('moment')
+
 //config bodyParser
 app.use(bodyParser.urlencoded({extented:false}))
 app.use(bodyParser.json())

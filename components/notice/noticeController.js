@@ -7,8 +7,10 @@ routes.get("/",(req,res)=>{
   res.send("Initial Page")
 })
 
-routes.get("/notice",(req,res)=>{
-  res.send("Notice Page")
+routes.get("/notice", async (req,res)=>{
+
+  const avisos = await notice.selecionarTodos()
+  res.render('notices',{avisos})
 })
 
 routes.get("/notice/new",(req,res)=>{

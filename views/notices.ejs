@@ -1,0 +1,69 @@
+<!-- Incluir o Head -->
+<%- include('./partials/head') %>
+
+  <body>
+
+    <!-- Menu -->
+    <%- include('./partials/navbar') %>
+    
+    <div class="container">
+
+      <br><br>
+        
+      <a href="#"><span class="material-icons">
+        reply
+        </span>  Voltar</a> <br> <br>
+  
+
+        <div class="card shadow">
+            <div class="card-header bg-blue text-white pl-5 p-4">
+              <h2 class="float-left"><span class="material-icons">
+                announcement
+                </span>   Avisos Cadastrados</h2>
+                <a href="/notice/new" class="btn btn-lg btn-dark float-right"><span class="material-icons">
+                  add_alert
+                  </span>Novo Aviso</a>
+            </div><!-- Card Header -->
+            <div class="card-body p-5">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Ação</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% if (avisos.length < 1  ) { %>
+                      <tr>
+                        <td colspan="5" class="text-center">Nenhum aviso cadastrado!</td>
+                      </tr> 
+                  <% } %>
+
+                  <% avisos.forEach(aviso => { %>
+                   
+                    <tr>
+                      <th scope="row"> <%= aviso.ID_avisos %> </th>
+                      <td><%= aviso.titulo %></td>
+                      <td><%= moment(aviso.data).format("DD/MM/YYYY") %></td>
+                      <td>
+                        <button class="btn btn-primary">Alterar</button>
+                        <button class="btn btn-secondary">Excluir</button>
+                      </td>
+                    </tr>
+
+                  <% }) %>
+
+                </tbody>
+              </table>
+            </div><!-- Card Body -->
+        </div><!-- Card -->
+
+    </div><!-- Container -->    
+
+      <!-- Incluir os Scripts do Bootstrap-->
+      <%- include('./partials/scripts_import') %>    
+  </body>
+</html>
