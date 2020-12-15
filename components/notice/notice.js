@@ -49,7 +49,7 @@ function editar(aviso, id){
  * @returns {object} Objeto com todos os avisos cadastrados ou uma mensagem de erro
  */
 function selecionarTodos(){
-  return db.select('*').from('avisos')
+  return db.select('*').from('avisos').orderBy('data','DESC')
     .then(avisos =>{
       return avisos
     })

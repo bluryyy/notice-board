@@ -3,8 +3,9 @@ const notice = require('./notice')
 //Pode ser invertido
 const routes = require('express').Router()
 
-routes.get("/",(req,res)=>{
-  res.send("Initial Page")
+routes.get("/",async (req,res)=>{
+  const avisos = await notice.selecionarTodos()
+  res.render('index',{avisos})
 })
 
 routes.get("/notice", async (req,res)=>{

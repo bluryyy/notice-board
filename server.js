@@ -4,6 +4,8 @@ const express = require('express')
 //import bodyParser
 const bodyParser = require('body-parser')
 
+const moment = require('moment')
+
 //import notice routes
 const routesNotice = require('./components/notice/noticeController')
 
@@ -16,7 +18,8 @@ app.set('view engine', 'ejs')
 //config Public
 app.use(express.static('public'))
 
-app.locals.moment = require('moment')
+moment.locale("pt-br")
+app.locals.moment = moment
 
 //config bodyParser
 app.use(bodyParser.urlencoded({extented:false}))
