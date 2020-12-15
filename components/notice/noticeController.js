@@ -27,4 +27,10 @@ routes.post("/notice/new", async (req,res)=>{
  res.render('forms',{msg})
 })
 
+routes.get("/notices/excluir/:id", async (req,res)=>{
+  const id = Number(req.params.id)
+  await notice.excluir(id)
+  res.redirect('/notice')
+})
+
 module.exports = routes

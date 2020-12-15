@@ -50,7 +50,7 @@
                       <td><%= moment(aviso.data).format("DD/MM/YYYY") %></td>
                       <td>
                         <button class="btn btn-primary">Alterar</button>
-                        <button class="btn btn-secondary">Excluir</button>
+                        <button class="btn btn-secondary" data-toggle="modal" data-target="#excluirModal" onClick="excluir(event,'<%= aviso.ID_avisos %>')">Excluir</button>
                       </td>
                     </tr>
 
@@ -61,9 +61,63 @@
             </div><!-- Card Body -->
         </div><!-- Card -->
 
-    </div><!-- Container -->    
+    </div><!-- Container -->   
+    
+    <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="excluirModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Deseja realmente excluir esse aviso?</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Título</th>
+              <th scope="col">Data</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="modal-tr-body">
+              <td scope="col">ID</td>
+              <td scope="col">Título</td>
+              <td scope="col">Data</td>
+            </tr>
+          </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+        <form id="form-excluir" method="GET">
+        <button type="submit" class="btn btn-primary">Sim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
       <!-- Incluir os Scripts do Bootstrap-->
-      <%- include('./partials/scripts_import') %>    
+      <%- include('./partials/scripts_import') %>
+      
+      <!-- Nosso Script-->
+      <script>
+        function excluir(event,id){
+          var tdBotoes = event.target.parentElement
+          var trAviso = tdBotoes.parentElement
+          var trModal = document.getElementById("modal-tr-body")
+
+          var formExcluir = document.getElementById("form-excluir")
+          formExcluir.action = "notices/excluir/"+id
+
+          trModal.innerHTML = trAviso.innerHTML
+          trModal.removeChild(trModal.lastElementChild)
+        }
+      </script>
+
   </body>
 </html>
